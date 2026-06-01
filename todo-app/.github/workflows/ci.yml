@@ -28,4 +28,5 @@ jobs:
           pytest
 
       - name: Build Docker Image
-        run: docker build -t todo-app ./todo-app
+        run: |
+           docker build -t todo-app ./todo-app
