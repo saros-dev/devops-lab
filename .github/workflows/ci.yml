@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: docker build -t todo-app .
+        run: docker build -t todo-app ./todo-app
