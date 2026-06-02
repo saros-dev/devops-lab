@@ -23,9 +23,9 @@ jobs:
           pip install -r todo-app/requirements.txt
 
       - name: Run tests
-         working-directory: ./todo-app
-         run: python -m pytest
+        working-directory: ./todo-app
+        run: python -m pytest
 
       - name: Build Docker Image
         run: |
-           docker build -t todo-app ./todo-app
+          docker build -t todo-app ./todo-app
