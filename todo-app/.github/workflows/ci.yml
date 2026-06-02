@@ -22,10 +22,9 @@ jobs:
         run: |
           pip install -r todo-app/requirements.txt
 
-      - name: Run Tests
-        run: |
-          cd todo-app
-          pytest
+      - name: Run tests
+         working-directory: ./todo-app
+         run: python -m pytest
 
       - name: Build Docker Image
         run: |
