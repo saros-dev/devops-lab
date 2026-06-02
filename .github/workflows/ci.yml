@@ -40,5 +40,3 @@ steps:
   - name: Push Docker Image
     run: |
       docker push ${{ secrets.DOCKER_USERNAME }}/todo-app:latest
-```
-
