@@ -16,6 +16,10 @@ def get_db():
 def home():
     return "Flask Todo API"
 
+@app.route("/health")
+def health():
+    return {"status": "healthy"}, 200
+
 @app.route("/add/<title>")
 def add_todo(title):
     conn = get_db()
