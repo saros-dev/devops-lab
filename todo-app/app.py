@@ -1,8 +1,11 @@
 from flask import Flask
+from prometheus_flask_exporter import PrometheusMetrics
+
 import os
 import psycopg2
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 def get_db():
     return psycopg2.connect(
