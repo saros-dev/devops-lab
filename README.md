@@ -274,7 +274,7 @@ devops-lab
 
 **Saros Shojaei**
 
-Computer Engineering Student
+Computer Engineer
 DevOps Engineer Journey
 
 Building cloud-native systems, automation pipelines, and modern infrastructure.
