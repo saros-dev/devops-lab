@@ -1,277 +1,280 @@
-# 🚀 Containerized Flask Application with CI/CD
+# 🚀 Cloud-Native DevOps Platform
 
-![CI](https://github.com/saros-dev/devops-lab/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
-![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-success)
+> From code commit to Kubernetes deployment, monitoring, and real-time alerting — fully automated.
 
-A containerized Flask application connected to PostgreSQL, featuring automated testing and Continuous Integration using GitHub Actions.
-
-This project was built to gain hands-on experience with modern DevOps workflows, containerization, CI/CD pipelines, database integration, and Linux-based development environments.
-
----
-
-## 📌 Key Achievements
-
-- Built a multi-container application using Docker Compose
-- Connected a Flask application to PostgreSQL
-- Implemented persistent database storage using Docker Volumes
-- Managed application configuration with Environment Variables
-- Created automated tests using Pytest
-- Built a CI pipeline using GitHub Actions
-- Automated Docker image builds on every push to the main branch
-- Practiced troubleshooting and debugging in containerized environments
+![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-success)
+![Docker](https://img.shields.io/badge/Docker-Multi--Architecture-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-326CE5)
+![Helm](https://img.shields.io/badge/Helm-Packaged-0F1689)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-623CE4)
+![Prometheus](https://img.shields.io/badge/Monitoring-Prometheus-E6522C)
+![Grafana](https://img.shields.io/badge/Grafana-Dashboards-F46800)
+![Alertmanager](https://img.shields.io/badge/Alerts-Telegram-success)
 
 ---
 
-## 🏗 Architecture
+# 🎯 Project Goal
 
-```mermaid
-flowchart LR
-    User --> Flask
-    Flask --> PostgreSQL
-```
+This project simulates a modern DevOps environment used in production systems.
 
----
+The objective was not only to deploy an application, but also to build the surrounding ecosystem required to operate, monitor, troubleshoot, and continuously deliver software in a cloud-native environment.
 
-## 🛠 Tech Stack
+The platform includes:
 
-| Category | Technology |
-|-----------|------------|
-| Language | Python |
-| Framework | Flask |
-| Database | PostgreSQL |
-| Containers | Docker |
-| Orchestration | Docker Compose |
-| CI/CD | GitHub Actions |
-| Testing | Pytest |
-| Version Control | Git & GitHub |
-| Operating System | Ubuntu Linux |
+✅ Containerization
+✅ CI/CD Automation
+✅ Infrastructure as Code
+✅ Kubernetes Orchestration
+✅ Helm Packaging
+✅ Monitoring & Observability
+✅ Alerting & Incident Notification
 
 ---
 
-## 📂 Project Structure
+# 🏛 System Architecture
 
 ```text
-todo-app/
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-├── tests/
-│   └── test_app.py
-├── app.py
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-├── .env
-└── README.md
+                   ┌─────────────────┐
+                   │    Developer    │
+                   └────────┬────────┘
+                            │
+                            ▼
+                   ┌─────────────────┐
+                   │     GitHub      │
+                   └────────┬────────┘
+                            │ Push
+                            ▼
+              ┌──────────────────────────┐
+              │ GitHub Actions Pipeline  │
+              └────────┬─────────────────┘
+                       │
+                       ▼
+              ┌──────────────────────────┐
+              │  Docker Hub Registry     │
+              └────────┬─────────────────┘
+                       │
+                       ▼
+            ┌──────────────────────────────┐
+            │ Kubernetes Cluster (K3s)     │
+            └─────────────┬────────────────┘
+                          │
+                 ┌────────┴────────┐
+                 ▼                 ▼
+          ┌─────────────┐   ┌─────────────┐
+          │   Service   │   │   Helm      │
+          └──────┬──────┘   └─────────────┘
+                 │
+                 ▼
+         ┌─────────────────┐
+         │ Flask Todo App  │
+         └─────────────────┘
+
+──────────────────────────────────────────
+
+      Prometheus ───► Grafana
+
+      Alertmanager ─► Telegram
 ```
 
 ---
 
-## ⚙️ Running Locally
+# 🔥 Highlights
 
-### Clone Repository
+### 🚢 Multi-Architecture Docker Images
 
-```bash
-git clone git@github.com:saros-dev/devops-lab.git
-cd devops-lab/todo-app
-```
+Built and published images for:
 
-### Start Services
+* linux/amd64
+* linux/arm64
 
-```bash
-docker compose up -d
-```
+This allows the same image to run seamlessly on:
 
-### Verify Containers
+* Apple Silicon (M1/M2/M3)
+* ARM Servers
+* Raspberry Pi
+* Cloud VMs
+* Traditional x86 Infrastructure
 
-```bash
-docker compose ps
-```
+---
 
-Expected output:
+### ☸ Kubernetes Deployment
+
+Application is deployed on a K3s cluster using:
+
+* Deployments
+* Services
+* Health Checks
+* Rolling Updates
+* Self-Healing Pods
+
+A failed container is automatically restarted by Kubernetes.
+
+---
+
+### 📦 Helm Packaging
+
+Deployment manifests are managed through Helm Charts.
+
+Benefits:
+
+* Reusable deployments
+* Versioned releases
+* Easy upgrades
+* Environment-specific configuration
+
+---
+
+### ⚙️ Infrastructure as Code
+
+Infrastructure provisioning is managed with Terraform.
+
+Everything is defined declaratively and can be recreated consistently.
+
+---
+
+### 🔄 Automated CI/CD
+
+Every push to the main branch triggers:
 
 ```text
-app    Up
-db     Up
-```
-
----
-
-## 🔍 API Endpoints
-
-### Home
-
-```bash
-curl localhost:5000
-```
-
-Response:
-
-```text
-Flask is running
-```
-
----
-
-### Database Check
-
-```bash
-curl localhost:5000/db
-```
-
-Returns PostgreSQL version information.
-
----
-
-### Add Todo
-
-```bash
-curl localhost:5000/add/test1
-```
-
-Response:
-
-```text
-added: test1
-```
-
----
-
-### List Todos
-
-```bash
-curl localhost:5000/todos
-```
-
-Response:
-
-```text
-[(1, 'test1')]
-```
-
----
-
-## 🧪 Running Tests
-
-Create and activate a virtual environment:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run tests:
-
-```bash
-pytest
-```
-
-Expected result:
-
-```text
-1 passed
-```
-
----
-
-## 🔄 CI Pipeline
-
-Every push to the `main` branch automatically triggers GitHub Actions.
-
-Pipeline workflow:
-
-```text
-Push
- ↓
-Checkout Code
- ↓
-Install Dependencies
- ↓
+Code Push
+    │
+    ▼
 Run Tests
- ↓
+    │
+    ▼
 Build Docker Image
- ↓
-Success
+    │
+    ▼
+Build Multi-Arch Image
+    │
+    ▼
+Push to Docker Hub
 ```
 
-Current pipeline validates:
-
-- Dependency installation
-- Automated tests
-- Docker image build process
+No manual image building required.
 
 ---
 
-## 💾 Persistent Storage
+### 📊 Monitoring & Observability
 
-PostgreSQL data is stored using Docker Volumes.
+Prometheus continuously scrapes metrics from:
 
-```yaml
-volumes:
-  - postgres_data:/var/lib/postgresql/data
+* Application
+* Kubernetes
+* Node Exporter
+
+Grafana dashboards provide real-time visibility into:
+
+* CPU Usage
+* Memory Usage
+* Pod Health
+* Node Metrics
+* Application Metrics
+
+---
+
+### 🚨 Real-Time Alerting
+
+Alertmanager is integrated with Telegram.
+
+Example alerts:
+
+🔥 High CPU Usage
+
+🔥 High Memory Usage
+
+🔥 Pod CrashLoopBackOff
+
+🔥 Application Unreachable
+
+🔥 Node Down
+
+Notifications are delivered instantly to Telegram.
+
+---
+
+# 🧰 Technology Stack
+
+| Layer              | Technologies            |
+| ------------------ | ----------------------- |
+| Application        | Flask                   |
+| Database           | PostgreSQL              |
+| Runtime            | Gunicorn                |
+| Containers         | Docker                  |
+| Registry           | Docker Hub              |
+| CI/CD              | GitHub Actions          |
+| Infrastructure     | Terraform               |
+| Orchestration      | Kubernetes (K3s)        |
+| Package Management | Helm                    |
+| Monitoring         | Prometheus              |
+| Visualization      | Grafana                 |
+| Alerting           | Alertmanager + Telegram |
+| OS                 | Ubuntu Linux            |
+
+---
+
+# 📂 Repository Structure
+
+```text
+devops-lab
+│
+├── .github/workflows
+│   └── ci.yml
+│
+├── todo-app
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── tests/
+│   ├── terraform/
+│   ├── k8s/
+│   └── helm/
+│
+└── monitoring/
 ```
 
-This ensures application data survives container restarts and recreation.
 
 ---
 
-## 📚 DevOps Concepts Practiced
 
-- Linux Administration
-- SSH Authentication
-- Git & GitHub Workflow
-- Docker Images
-- Docker Networking
-- Docker Volumes
-- Docker Compose
-- Environment Variables
-- PostgreSQL Integration
-- Automated Testing
-- CI/CD Fundamentals
-- GitHub Actions
-- Troubleshooting Containerized Applications
+# 💡 Key DevOps Skills Demonstrated
 
----
-
-## 🚧 Roadmap
-
-### Completed ✅
-
-- Flask Application
-- PostgreSQL Integration
-- Docker Containerization
-- Docker Compose
-- Persistent Volumes
-- Environment Variables
-- Automated Testing
-- GitHub Actions CI
-
-### Planned 🔜
-
-- Docker Hub Integration
-- Nginx Reverse Proxy
-- HTTPS with Let's Encrypt
-- VPS Deployment
-- Monitoring & Logging
-- Terraform
-- Kubernetes Deployment
+* Linux Administration
+* Git & GitHub
+* Docker
+* Multi-Architecture Images
+* Docker Hub
+* CI/CD Pipelines
+* GitHub Actions
+* Infrastructure as Code
+* Terraform
+* Kubernetes
+* Helm
+* Monitoring
+* Alerting
+* Observability
+* Production Troubleshooting
+* Incident Response
 
 ---
 
-## 👨‍💻 Author
+# 🚀 Future Improvements
+
+* ArgoCD (GitOps)
+* Ingress & Reverse Proxy
+* TLS Certificates
+* Secret Management
+* Kubernetes Security Hardening
+* Cloud Deployment (AWS)
+
+---
+
+# 👨‍💻 Author
 
 **Saros Shojaei**
 
-Computer Engineer  
-DevOps & Cloud Enthusiast
+Computer Engineering Student
+DevOps Engineer Journey
 
-GitHub: @saros-dev
+Building cloud-native systems, automation pipelines, and modern infrastructure.
